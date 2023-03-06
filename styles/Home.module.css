@@ -1,11 +1,78 @@
-.main {
+.connect_wallet {
+  color: #D49C50;
+}
+
+.layer2_div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  padding: 6rem;
-  min-height: 100vh;
+  align-items: end;
+  justify-content: center;
+  width: 100%;
+  padding: 1.5rem 2.5rem;
 }
+.layer2_div > span {
+  padding-right: 2rem;
+  padding-top: 1rem;
+}
+
+.func_div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(33.3%, auto));
+  width: var(--max-width);
+  max-width: 100%;
+}
+.func_div > .card_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+}
+
+.card_div .layer1_div {
+  display: flex;
+  column-gap: 0.5rem;
+  font-size: 30px;
+  padding-bottom: 5px;
+}
+.card_div .button_div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-top: 12px;
+  color: #878280;
+  border: 1px solid #FFFFFF;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .description {
   display: inherit;
