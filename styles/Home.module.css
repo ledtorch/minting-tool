@@ -1,11 +1,7 @@
-.connect_wallet {
-  color: #D49C50;
-}
-
 .layer2_div {
   display: flex;
   flex-direction: column;
-  align-items: end;
+  align-items: flex-end;
   justify-content: center;
   width: 100%;
   padding: 1.5rem 2.5rem;

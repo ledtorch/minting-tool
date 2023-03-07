@@ -5,7 +5,28 @@ import styles from '@/styles/Home.module.css'
 import Layout from '../components/layout'
 import Link from 'next/link'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
+
+const funcArray = [
+  {
+    title: 'Mint',
+    iconPath: "/icon_mint.svg",
+    imagePath: "/image_mint.svg",
+    linkPath: "/mint"
+  },
+  {
+    title: 'Revoke',
+    iconPath: "/icon_revoke.svg",
+    imagePath: "/image_revoke.svg",
+    linkPath: "/mint"
+  },
+  {
+    title: 'Upgrade',
+    iconPath: "/icon_upgrade.svg",
+    imagePath: "/image_upgrade.svg",
+    linkPath: "/mint"
+  }
+]
 
 export default function Home() {
   return (
@@ -23,9 +44,7 @@ export default function Home() {
       </div>
 
       <div className={styles.func_div}>
-        <FuncCard title='Mint' iconPath={"/icon_mint.svg"} imagePath={"/image_mint.svg"} linkPath={"/mint"} />
-        <FuncCard title='Revoke' iconPath={"/icon_revoke.svg"} imagePath={"/image_revoke.svg"} linkPath={"/mint"} />
-        <FuncCard title='Upgrade' iconPath={"/icon_upgrade.svg"} imagePath={"/image_upgrade.svg"} linkPath={"/mint"} />
+        {funcArray.map((item) => <FuncCard key={item.title} {...item} />)}
       </div>
     </Layout>
   )
