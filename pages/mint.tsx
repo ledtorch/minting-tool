@@ -33,6 +33,7 @@ const stepArray = [
 
 
 export default function Mint() {
+  const [step, setStep] = useState<number>(1);
   const [file, setFile] = useState<File | null>(null);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -62,37 +63,48 @@ export default function Mint() {
             />
             Minting NFT
           </div>
-          {file && (<div className={styles.cancel_next_div}>
-            <button className={styles.button_cancel} onClick={handleClickCancelFile}>
-              <Image
-                src="/cancel_upload_button.svg"
-                alt="cancel_upload_button"
-                width={24}
-                height={24}
-                priority
-              />
-              Cancel this File
-            </button>
-            <button className={styles.button_next}>
-              Next
-              <Image
-                src="/arrow_right.svg"
-                alt="arrow_right"
-                width={24}
-                height={24}
-                priority
-              />
-            </button>
-          </div>)}
-
+          {
+            file && (<div className={styles.cancel_next_div}>
+              {step === 1 && (<button className={styles.button_cancel} onClick={handleClickCancelFile}>
+                <Image
+                  src="/cancel_upload_button.svg"
+                  alt="cancel_upload_button"
+                  width={24}
+                  height={24}
+                  priority
+                />
+                Cancel this File
+              </button>)}
+              {step > 1 && (
+                <button className={styles.button_next} onClick={() => setStep(step - 1)}>
+                  Back
+                  <Image
+                    src="/back_arrow.svg"
+                    alt="back_arrow"
+                    width={24}
+                    height={24}
+                    priority
+                  />
+                </button>
+              )}
+              <button className={styles.button_next} onClick={() => setStep(step + 1)}>
+                Next
+                <Image
+                  src="/arrow_right.svg"
+                  alt="arrow_right"
+                  width={24}
+                  height={24}
+                  priority
+                />
+              </button>
+            </div>)
+          }
         </div>
 
         <div className={styles.layer1_div}>
           <div className={styles.div_left}>
             {stepArray.map(item => <StepCard key={item.index} {...item} />)}
           </div>
-
-
 
           <div className={styles.div_right}>
             <FileUploader
@@ -104,11 +116,34 @@ export default function Mint() {
             >
               <DropFileChildren file={file} name={name} description={description} setName={setName} setDescription={setDescription} />
             </FileUploader>
+            {step === 2 && (
+              <div className={styles.div_step2}>
+                <div className={styles.div_setting_card}>
+                  <div className={styles.div_title}>
+                    <Image
+                      src="/Soulbound.svg"
+                      alt="Soulbound"
+                      width={20}
+                      height={20}
+                      priority
+                    />
+                    Soulbound
+                  </div>
+                  <div className={styles.div_description}>
+                    In TOP, the soulbound token can only be revoked by its original owner. For more information, please refer to the section on <span>SBT in TOP</span>.
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </Layout>
   )
+}
+
+
+function Step1() {
 }
 
 function StepCard(
@@ -140,7 +175,6 @@ function DropFileChildren(
             className={styles.preview_file}
           />
         </div>
-
         <div className={styles.div_info}>
           <div>
             NFT Name
@@ -176,7 +210,6 @@ function DropFileChildren(
             />
           </div>
         </div>
-
       </div>
     ) : (
       <div className={styles.div_drop_file_here}>

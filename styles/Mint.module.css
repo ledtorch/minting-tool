@@ -89,6 +89,7 @@
 
 .card_div>div.title {
   display: flex;
+  align-items: center;
   column-gap: 0.5rem;
   color: #D1D7EB;
 }
@@ -104,7 +105,7 @@
   width: 20px;
   height: 20px;
   border: 1px solid #FFF;
-  border-radius: 3px;
+  border-radius: 5px;
   font-size: 14px;
 }
 
@@ -173,4 +174,36 @@
 .div_info input {
   width: 75%;
   padding: 5px 10px;
+}
+
+
+
+
+
+.div_right {
+  display: flex;
+  flex-direction: row;
+  column-gap: 36px;
+}
+
+.div_step2 {
+  display: flex;
+}
+.div_setting_card {
+
+}
+
+.div_setting_card > .div_title {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
+  color: #C2C2C6;
+}
+.div_setting_card > .div_description {
+  color: #C2C2C6;
+  font-size: 9px;
+  margin-top: 7px;
+}
+.div_setting_card > .div_description > span {
+  color: #F4C270;
 }
