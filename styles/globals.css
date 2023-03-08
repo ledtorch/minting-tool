@@ -96,8 +96,30 @@ a {
   text-decoration: none;
 }
 
+input[type="text"] {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 8px;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
   }
+}
+
+
+
+
+
+
+
+
+
+/* ant toggle color */
+.ant-switch.ant-switch-checked {
+  background-color: #D49C50;
+}
+.ant-switch.ant-switch-checked:hover:not(.ant-switch-disabled) {
+  background: #D49C50;
 }

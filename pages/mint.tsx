@@ -8,6 +8,7 @@ import styles from '@/styles/Mint.module.css'
 
 import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
+import { Switch } from 'antd';
 const fileTypes = ["JPG", "PNG", "SVG", "GIF"];
 
 const stepArray = [
@@ -37,6 +38,10 @@ export default function Mint() {
   const [file, setFile] = useState<File | null>(null);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [soulBound, setSoulBound] = useState<boolean>(false);
+  const [batchMint, setBatchMint] = useState<boolean>(false);
+  const [receiver, setReceiver] = useState<string>("");
+
   const handleChange = (filePass: File) => {
     if (!file) {
       setFile(filePass);
@@ -113,26 +118,61 @@ export default function Mint() {
               types={fileTypes}
               multiple={false}
               disabled={file}
+              hoverTitle=" "
             >
               <DropFileChildren file={file} name={name} description={description} setName={setName} setDescription={setDescription} />
             </FileUploader>
             {step === 2 && (
               <div className={styles.div_step2}>
                 <div className={styles.div_setting_card}>
-                  <div className={styles.div_title}>
-                    <Image
-                      src="/Soulbound.svg"
-                      alt="Soulbound"
-                      width={20}
-                      height={20}
-                      priority
-                    />
-                    Soulbound
+                  <div className={styles.div_header}>
+                    <div className={styles.div_title}>
+                      <Image
+                        src="/Soulbound.svg"
+                        alt="Soulbound"
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Soulbound
+
+                    </div>
+                    <Switch size="small" defaultChecked={soulBound} onChange={(check) => { setSoulBound(check) }} />
                   </div>
                   <div className={styles.div_description}>
                     In TOP, the soulbound token can only be revoked by its original owner. For more information, please refer to the section on <span>SBT in TOP</span>.
                   </div>
+                  {soulBound && (
+                    <div className={styles.div_receiver}>
+                      Receiver
+                      <input
+                        type="text"
+                        placeholder='Enter the address of the receiver'
+                        value={receiver}
+                        onChange={(e) => setReceiver(e.target.value)}
+                      />
+                      <p>*The receiver will be granted to the wallet you used for minting.</p>
+                    </div>
+                  )}
                 </div>
+
+                {!soulBound && (<div className={styles.div_setting_card}>
+                  <div className={styles.div_header}>
+                    <div className={styles.div_title}>
+                      <Image
+                        src="/batch_mint.svg"
+                        alt="batch_mint"
+                        width={20}
+                        height={20}
+                        priority
+                      />
+                      Batch Mint
+                    </div>
+                    <Switch size="small" defaultChecked={batchMint} onChange={(check) => setBatchMint(check)} />
+                  </div>
+                </div>)}
+
+
               </div>
             )}
           </div>
