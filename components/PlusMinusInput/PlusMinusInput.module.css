@@ -1,0 +1,37 @@
+.div_plus_minus {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  column-gap: 10px;
+}
+
+.div_plus_minus > .min, .div_plus_minus > .max, .div_plus_minus > .minus_multi, .div_plus_minus > .plus_multi {
+  display: flex;
+  align-items: center;
+  border: 1px solid #FFF;
+  border-radius: 4px;
+  padding: 0 8px 0 0;
+  color: #878280;
+  cursor: pointer;
+}
+
+.div_plus_minus > .min, .div_plus_minus > .max {
+  padding: 4px 8px;
+}
+
+.div_plus_minus > .div_input {
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.07);
+}
+.div_plus_minus > .div_input > img {
+  cursor: pointer;
+}
+.div_plus_minus > .div_input > input {
+  background-color: transparent;
+  text-align: center;
+  width: 52px;
+  color: #D49C50;
+  font-size: 12px;
+}

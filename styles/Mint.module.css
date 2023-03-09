@@ -85,6 +85,16 @@
   top: 0;
   left: -5px;
 }
+.card_div_active_done::before {
+  content: '';
+  position: absolute;
+  background-color: #D49C50;
+  opacity: 0.7;
+  width: 2px;
+  height: 100%;
+  top: 0;
+  left: -5px;
+}
 
 
 .card_div>div.title {
@@ -96,6 +106,10 @@
 
 .card_div_active>div.title {
   color: #D49C50;
+}
+.card_div_active_done>div.title {
+  color: #D49C50;
+  opacity: 0.7;
 }
 
 .card_div>div.title>div:nth-child(1) {
@@ -217,6 +231,11 @@
   color: #F4C270;
 }
 
+.div_setting_card > .div_content > p {
+  font-size: 12px;
+  color: #C2C2C6;
+}
+
 .div_receiver {
   display: flex;
   flex-direction: column;
@@ -225,10 +244,95 @@
   margin-top: 12px;
 }
 
-.div_receiver > input {
-
-}
 .div_receiver > p {
   font-size: 12px;
   color: #F46060;
+}
+
+.div_feature_card {
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.div_feature_card > .div_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #C2C2C6;
+  border-radius: 4px;
+  
+}
+.div_feature_card > .div_header > .div_title {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
+  color: #C2C2C6;
+}
+.div_feature_card > .div_header > .div_title span {
+  color: #C2C2C6;
+  font-size: 12px;
+}
+
+
+.div_feature_card > .div_header > .control_icon {
+  cursor: pointer;
+}
+
+.div_feature_card > .div_content {
+
+}
+
+.div_voucher, .div_attribute {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.div_voucher > div > .div_title, .div_attribute > div > .div_title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.div_attribute > div > .div_input {
+  display: flex;
+  column-gap: 8px;
+}
+
+
+.red_hint {
+  font-size: 10px;
+  color: #F46060;
+  margin-top: 4px;
+}
+
+.white_hint {
+  font-size: 10px;
+  color: #C2C2C6;
+  margin-top: 4px;
+}
+
+.button_add_attribute {
+  color: #878280;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+.div_upgradable {
+  margin-top: 12px;
+}
+.div_upgradable > .div_nav {
+  font-size: 12px;
+  color: #FFF;
+  text-decoration: underline;
+}
+.div_upgradable > .div_content {
+  font-size: 12px;
+  color: #C2C2C6;
+  margin-top: 11px;
 }

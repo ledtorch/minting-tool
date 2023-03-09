@@ -1,14 +1,15 @@
-import Head from 'next/head'
+import React, { useState } from "react";
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 
 import Layout from '../components/layout'
-
 import styles from '@/styles/Mint.module.css'
+import { PlusMinusInput } from '@/components/PlusMinusInput/PlusMinusInput'
 
-import React, { useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
-import { Switch } from 'antd';
+import { Switch, Checkbox, Radio } from 'antd';
+import type { CheckboxChangeEvent } from 'antd/es/checkbox';
+import type { RadioChangeEvent } from 'antd';
+
 const fileTypes = ["JPG", "PNG", "SVG", "GIF"];
 
 const stepArray = [
@@ -16,22 +17,26 @@ const stepArray = [
     index: 1,
     title: 'Upload',
     description: 'Upload your NFT picture. We support jpg, png, svg, gif.',
-    active: true
+
   },
   {
     index: 2,
     title: 'Edit',
     description: 'Edit your NFT features.',
-    active: false
+
   },
   {
     index: 3,
     title: 'Deploy',
     description: 'Edit your NFT features',
-    active: false
+
   },
 ]
 
+interface IAttributeData {
+  trait: string,
+  value: string
+}
 
 export default function Mint() {
   const [step, setStep] = useState<number>(1);
@@ -41,6 +46,12 @@ export default function Mint() {
   const [soulBound, setSoulBound] = useState<boolean>(false);
   const [batchMint, setBatchMint] = useState<boolean>(false);
   const [receiver, setReceiver] = useState<string>("");
+  const [batchMintValue, setBatchMintValue] = useState<string>("1");
+  const [voucherIcon, setVoucherIcon] = useState<number>(1);
+  const [voucherName, setVoucherName] = useState<string>("");
+  const [redemptionLimit, setRedemptionLimit] = useState<string>("1");
+  const [loyalty, setLoyalty] = useState<string>("1");
+  const [attribute, setAttribute] = useState<IAttributeData[]>([{ trait: '', value: '' }]);
 
   const handleChange = (filePass: File) => {
     if (!file) {
@@ -52,6 +63,18 @@ export default function Mint() {
 
   const handleClickCancelFile = () => {
     setFile(null)
+  }
+
+  const handleAttributeChange = (index: number, data: IAttributeData) => {
+    let oriData = [...attribute];
+    oriData[index] = data;
+    setAttribute(oriData);
+  }
+  const removeAttribute = (index: number) => {
+    let data = [...attribute];
+    data.splice(index, 1);
+    console.log(data, index)
+    setAttribute(data);
   }
 
   return (
@@ -92,7 +115,7 @@ export default function Mint() {
                   />
                 </button>
               )}
-              <button className={styles.button_next} onClick={() => setStep(step + 1)}>
+              {step < 3 && (<button className={styles.button_next} onClick={() => setStep(step + 1)}>
                 Next
                 <Image
                   src="/arrow_right.svg"
@@ -101,14 +124,24 @@ export default function Mint() {
                   height={24}
                   priority
                 />
-              </button>
+              </button>)}
+              {step === 3 && (<button className={styles.button_next} onClick={() => {console.log('click Mint & Deploy')}}>
+                Mint & Deploy
+                <Image
+                  src="/arrow_right.svg"
+                  alt="arrow_right"
+                  width={24}
+                  height={24}
+                  priority
+                />
+              </button>)}
             </div>)
           }
         </div>
 
         <div className={styles.layer1_div}>
           <div className={styles.div_left}>
-            {stepArray.map(item => <StepCard key={item.index} {...item} />)}
+            {stepArray.map(item => <StepCard key={item.index} {...item} step={step} />)}
           </div>
 
           <div className={styles.div_right}>
@@ -120,9 +153,16 @@ export default function Mint() {
               disabled={file}
               hoverTitle=" "
             >
-              <DropFileChildren file={file} name={name} description={description} setName={setName} setDescription={setDescription} />
+              <DropFileChildren
+                file={file}
+                name={name}
+                description={description}
+                setName={setName}
+                setDescription={setDescription}
+                step={step}
+              />
             </FileUploader>
-            {step === 2 && (
+            {step >= 2 && (
               <div className={styles.div_step2}>
                 <div className={styles.div_setting_card}>
                   <div className={styles.div_header}>
@@ -137,7 +177,7 @@ export default function Mint() {
                       Soulbound
 
                     </div>
-                    <Switch size="small" defaultChecked={soulBound} onChange={(check) => { setSoulBound(check) }} />
+                    <Switch size="small" defaultChecked={soulBound} onChange={(check) => { setSoulBound(check) }} disabled={step === 3} />
                   </div>
                   <div className={styles.div_description}>
                     In TOP, the soulbound token can only be revoked by its original owner. For more information, please refer to the section on <span>SBT in TOP</span>.
@@ -147,16 +187,49 @@ export default function Mint() {
                       Receiver
                       <input
                         type="text"
-                        placeholder='Enter the address of the receiver'
+                        placeholder={step === 3 ? '' : 'Enter the address of the receiver'}
                         value={receiver}
                         onChange={(e) => setReceiver(e.target.value)}
+                        disabled={step === 3}
                       />
                       <p>*The receiver will be granted to the wallet you used for minting.</p>
                     </div>
                   )}
                 </div>
 
-                {!soulBound && (<div className={styles.div_setting_card}>
+                {!soulBound && (
+                  <div className={styles.div_setting_card}>
+                    <div className={styles.div_header}>
+                      <div className={styles.div_title}>
+                        <Image
+                          src="/batch_mint.svg"
+                          alt="batch_mint"
+                          width={20}
+                          height={20}
+                          priority
+                        />
+                        Batch Mint
+                      </div>
+                      <Switch size="small" defaultChecked={batchMint} onChange={(check) => setBatchMint(check)} disabled={step === 3} />
+                    </div>
+                    {batchMint && (<div className={styles.div_content} style={{ marginTop: '15px' }}>
+                      <PlusMinusInput
+                        unitNum={50}
+                        value={batchMintValue}
+                        setValue={setBatchMintValue}
+                        maxValue={1000}
+                        minValue={1}
+                        disabled={step === 3}
+                      />
+                      <p style={{ marginTop: '8px' }}>
+                        *Mint limit: 10,000
+                      </p>
+                      <p>*If you need to mint more than 10,000 NFTs, please contact our customer service.</p>
+                    </div>)}
+                  </div>
+                )}
+
+                <div className={styles.div_setting_card}>
                   <div className={styles.div_header}>
                     <div className={styles.div_title}>
                       <Image
@@ -166,13 +239,183 @@ export default function Mint() {
                         height={20}
                         priority
                       />
-                      Batch Mint
+                      NFT Contract Features
                     </div>
-                    <Switch size="small" defaultChecked={batchMint} onChange={(check) => setBatchMint(check)} />
                   </div>
-                </div>)}
+                  <FeatureCard title="Voucher" step={step}>
+                    <div className={styles.div_voucher}>
+                      <div>
+                        <div className={styles.div_title}>Voucher Icon</div>
 
+                        <Radio.Group onChange={(e: RadioChangeEvent) => {
+                          console.log('radio checked', e.target.value);
+                          setVoucherIcon(e.target.value);
+                        }} value={voucherIcon} disabled={step === 3}>
+                          <Radio value={1}>
+                            <Image
+                              src="/voucher/voucher_icon_1.svg"
+                              alt="voucher_icon_1"
+                              width={24}
+                              height={24}
+                              priority
+                              className={styles.svg001}
+                            />
+                          </Radio>
+                          <Radio value={2}>
+                            <Image
+                              src="/voucher/voucher_icon_2.svg"
+                              alt="voucher_icon_2"
+                              width={24}
+                              height={24}
+                              priority
+                            />
+                          </Radio>
+                          <Radio value={3}>
+                            <Image
+                              src="/voucher/voucher_icon_3.svg"
+                              alt="voucher_icon_3"
+                              width={24}
+                              height={24}
+                              priority
+                            />
+                          </Radio>
+                          <Radio value={4}>
+                            <Image
+                              src="/voucher/voucher_icon_4.svg"
+                              alt="voucher_icon_4"
+                              width={24}
+                              height={24}
+                              priority
+                            />
+                          </Radio>
+                        </Radio.Group>
+                      </div>
+                      <div>
+                        <div className={styles.div_title}>Voucher Name</div>
+                        <div>
+                          <input
+                            style={{ width: '100%' }}
+                            type="text"
+                            value={voucherName}
+                            onChange={(e) => setVoucherName(e.target.value)}
+                            placeholder={step === 3 ? '' : 'Enter voucher name'}
+                            disabled={step === 3}
+                          />
+                        </div>
+                        <div className={styles.red_hint}>
+                          *Please name this voucher.
+                        </div>
+                      </div>
+                      <div>
+                        <div className={styles.div_title}>Redemption Limit</div>
+                        <PlusMinusInput
+                          unitNum={10}
+                          value={redemptionLimit}
+                          setValue={setRedemptionLimit}
+                          maxValue={100}
+                          minValue={1}
+                          disabled={step === 3}
+                        />
+                        <div className={styles.red_hint}>
+                          *The max number is 100.
+                        </div>
+                      </div>
+                    </div>
+                  </FeatureCard>
 
+                  <FeatureCard title="Loyalty" step={step}>
+                    <div style={{ marginTop: '16px' }}>
+                      <PlusMinusInput
+                        unitNum={5}
+                        value={loyalty}
+                        setValue={setLoyalty}
+                        maxValue={100}
+                        minValue={1}
+                        disabled={step === 3}
+                      />
+                      <div className={styles.white_hint}>
+                        *Loyalty range: 0~100%
+                      </div>
+                    </div>
+                  </FeatureCard>
+
+                  <FeatureCard title="Attribute" step={step}>
+                    <div className={styles.div_attribute}>
+                      {attribute.map((item, index) => {
+                        return (
+                          <div key={index}>
+                            <div className={styles.div_title}>
+                              {attribute.length > 1 && step !== 3 && (
+                                <Image
+                                  src="/icon_minus.svg"
+                                  alt="icon_minus"
+                                  width={24}
+                                  height={24}
+                                  priority
+                                  style={{ cursor: 'pointer' }}
+                                  onClick={() => { removeAttribute(index) }}
+                                />
+                              )}
+                              Attribute {index + 1}
+                            </div>
+                            <div className={styles.div_input}>
+                              <input
+                                style={{ width: '100%' }}
+                                type="text"
+                                value={item.trait}
+                                onChange={(e) => {
+                                  let data = { ...attribute[index] };
+                                  data.trait = e.target.value;
+                                  handleAttributeChange(index, data);
+                                }}
+                                placeholder={step === 3 ? '' : 'Trait'}
+                                disabled={step === 3}
+                              />
+                              <input
+                                style={{ width: '100px' }}
+                                type="text"
+                                value={item.value}
+                                onChange={(e) => {
+                                  let data = { ...attribute[index] };
+                                  data.value = e.target.value;
+                                  handleAttributeChange(index, data);
+                                }}
+                                placeholder={step === 3 ? '' : 'Value'}
+                                disabled={step === 3}
+                              />
+                            </div>
+                          </div>
+                        )
+                      })}
+
+                      <div className={styles.red_hint}>
+                        *The empty trait & value will be ignore when you mint the NFT.
+                      </div>
+                      <div className={styles.button_add_attribute} onClick={() => {
+                        if (step === 3) {
+                          return;
+                        }
+                        let data = [...attribute];
+                        data.push({ trait: '', value: '' })
+                        setAttribute(data);
+                      }}>
+                        Add Attribute
+                      </div>
+                      <div className={styles.white_hint}>
+                        *If you need to add more than 10 attributes, please contact our customer service.
+                      </div>
+                    </div>
+                  </FeatureCard>
+
+                  <FeatureCard title="Upgradable" step={step}>
+                    <div className={styles.div_upgradable}>
+                      <div className={styles.div_nav}>Default</div>
+                      <div className={styles.div_content}>
+                        The editorship will be granted to the wallet you used for minting.
+                      </div>
+                    </div>
+                  </FeatureCard>
+                </div>
               </div>
             )}
           </div>
@@ -183,14 +426,46 @@ export default function Mint() {
 }
 
 
-function Step1() {
+
+function FeatureCard({ title, children, step }: { title: string, children: React.ReactNode, step: number }) {
+  const [show, setShow] = useState<boolean>(false);
+  return (
+    <div className={styles.div_feature_card}>
+      <div className={styles.div_header}>
+        <div className={styles.div_title}>
+          <Checkbox onChange={(e: CheckboxChangeEvent) => {
+            console.log(`checked = ${e.target.checked}`);
+          }} disabled={step === 3}>{title}</Checkbox>
+        </div>
+        <Image
+          src={show ? "/header_dash_icon.svg" : "/header_arrow_down_icon.svg"}
+          alt="control_icon"
+          width={24}
+          height={24}
+          priority
+          className={styles.control_icon}
+          onClick={() => { setShow(!show) }}
+        />
+      </div>
+      {
+        show && children
+      }
+    </div>
+  )
 }
 
+
+
 function StepCard(
-  { index, title, description, active }:
-    { index: number, title: string, description: string, active: boolean }
+  { index, title, description, step }:
+    { index: number, title: string, description: string, step: number }
 ) {
-  const sty = active ? styles.card_div + ' ' + styles.card_div_active : styles.card_div;
+  let sty = styles.card_div;
+  if (step === index) {
+    sty = styles.card_div + ' ' + styles.card_div_active;
+  } else if (step > index) {
+    sty = styles.card_div + ' ' + styles.card_div_active_done;
+  }
   return (
     <div className={sty}>
       <div className={styles.title}><div>{index}</div>{title}</div>
@@ -200,8 +475,8 @@ function StepCard(
 }
 
 function DropFileChildren(
-  { file, name, description, setName, setDescription }:
-    { file: File | null, name: string, description: string, setName: Function, setDescription: Function }
+  { file, name, description, setName, setDescription, step }:
+    { file: File | null, name: string, description: string, setName: Function, setDescription: Function, step: number }
 ) {
   return (
     file ? (
@@ -227,7 +502,7 @@ function DropFileChildren(
             />
           </div>
           <div>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={step === 3} />
           </div>
         </div>
         <div className={styles.div_info}>
@@ -245,8 +520,9 @@ function DropFileChildren(
             <input
               type="text"
               value={description}
-              placeholder="The description of the NFT."
+              placeholder={step === 3 ? '' : 'The description of the NFT.'}
               onChange={(e) => setDescription(e.target.value)}
+              disabled={step === 3}
             />
           </div>
         </div>

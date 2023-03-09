@@ -1,0 +1,6 @@
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" y="4" width="8" height="16" rx="2" stroke="#D1D7EB" stroke-width="1.2"/>
+<path d="M12.0281 6.4L12.9961 5.42169C13.773 4.63651 15.0326 4.63651 15.8095 5.42169L18.5718 8.21339C19.357 9.00702 19.3473 10.2967 18.5502 11.0782L12 17.5" stroke="#D1D7EB" stroke-width="1.2"/>
+<path d="M17.6 12L18 12C19.1046 12 20 12.8954 20 14L20 18C20 19.1046 19.1046 20 18 20L8 20" stroke="#D1D7EB" stroke-width="1.2"/>
+<ellipse cx="8" cy="17" rx="1" ry="1" fill="#D1D7EB"/>
+</svg>
