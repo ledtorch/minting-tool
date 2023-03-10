@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Layout from '../components/layout'
 import styles from '@/styles/Mint.module.css'
 import { PlusMinusInput } from '@/components/PlusMinusInput/PlusMinusInput'
+import { StepCard } from '@/components/StepCard/StepCard'
 
 import { FileUploader } from "react-drag-drop-files";
 import { Switch, Checkbox, Radio } from 'antd';
@@ -83,7 +84,7 @@ export default function Mint() {
   return (
     <Layout>
       <div>
-        <div className={styles.page_title_div}>
+        <div className={"page_title_div"}>
           <div>
             <Image
               src="/icon_mint.svg"
@@ -545,25 +546,6 @@ function FeatureCard({ title, children, step }: { title: string, children: React
   )
 }
 
-
-
-function StepCard(
-  { index, title, description, step }:
-    { index: number, title: string, description: string, step: number }
-) {
-  let sty = styles.card_div;
-  if (step === index) {
-    sty = styles.card_div + ' ' + styles.card_div_active;
-  } else if (step > index) {
-    sty = styles.card_div + ' ' + styles.card_div_active_done;
-  }
-  return (
-    <div className={sty}>
-      <div className={styles.title}><div>{index}</div>{title}</div>
-      <div className={styles.description}>{description}</div>
-    </div>
-  )
-}
 
 function DropFileChildren(
   { file, name, description, setName, setDescription, step }:

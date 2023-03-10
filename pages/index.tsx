@@ -12,19 +12,22 @@ const funcArray = [
     title: 'Mint',
     iconPath: "/icon_mint.svg",
     imagePath: "/image_mint.svg",
-    linkPath: "/mint"
+    linkPath: "/mint",
+    description: "Mint NFT"
   },
   {
     title: 'Revoke',
     iconPath: "/icon_revoke.svg",
     imagePath: "/image_revoke.svg",
-    linkPath: "/mint"
+    linkPath: "/revoke",
+    description: "Revoke NFT"
   },
   {
     title: 'Upgrade',
     iconPath: "/icon_upgrade.svg",
     imagePath: "/image_upgrade.svg",
-    linkPath: "/mint"
+    linkPath: "/mint",
+    description: "Upgrade NFT"
   }
 ]
 
@@ -52,8 +55,8 @@ export default function Home() {
 
 
 function FuncCard(
-  { title, iconPath, imagePath, linkPath }:
-    { title: string, iconPath: string, imagePath: string, linkPath: string }) {
+  { title, iconPath, imagePath, linkPath, description }:
+    { title: string, iconPath: string, imagePath: string, linkPath: string, description: string }) {
   return (
     <div className={styles.func_div}>
       <div className={styles.card_div}>
@@ -75,7 +78,7 @@ function FuncCard(
           priority
         />
         <Link href={linkPath} className={styles.button_div}>
-          Mint NFT
+          {description}
           <Image
             src="/button_arrow_right.svg"
             alt="button_arrow_right"
