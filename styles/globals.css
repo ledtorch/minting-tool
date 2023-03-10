@@ -194,3 +194,58 @@ input[type="text"] {
   align-items: center;
   column-gap: 1rem;
 }
+
+
+.div_button_wrapper>button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5px;
+  background-color: transparent;
+
+  padding: 5px 12px;
+  font-size: 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.div_button_wrapper>.button_cancel {
+  display: flex;
+  border: 1px solid #F46060;
+  color: #F46060;
+}
+
+.div_button_wrapper>.button_next {
+  border: 1px solid #FFF;
+  color: #878280;
+}
+
+.div_button_wrapper>.button_revoke_nft {
+  border: 1px solid #F46060;
+  color: #F46060;
+}
+
+
+.layer1_div {
+  display: flex;
+  column-gap: 36px;
+}
+
+.div_left {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+}
+
+.div_left>div {
+  position: relative;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 6px;
+  width: 295px;
+}
+
+.div_right {
+  display: flex;
+  flex-direction: row;
+  column-gap: 36px;
+}

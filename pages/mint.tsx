@@ -97,8 +97,8 @@ export default function Mint() {
           </div>
           {
             file && (
-              <div className={styles.cancel_next_div}>
-                {step === 1 && (<button className={styles.button_cancel} onClick={handleClickCancelFile}>
+              <div className={'div_button_wrapper'}>
+                {step === 1 && (<button className={'button_cancel'} onClick={handleClickCancelFile}>
                   <Image
                     src="/cancel_upload_button.svg"
                     alt="cancel_upload_button"
@@ -109,7 +109,7 @@ export default function Mint() {
                   Cancel this File
                 </button>)}
                 {step > 1 && (
-                  <button className={styles.button_next} onClick={() => setStep(step - 1)}>
+                  <button className={'button_next'} onClick={() => setStep(step - 1)}>
                     Back
                     <Image
                       src="/back_arrow.svg"
@@ -121,7 +121,7 @@ export default function Mint() {
                   </button>
                 )}
                 {step < 3 && (
-                  <button className={styles.button_next} onClick={() => setStep(step + 1)}>
+                  <button className={'button_next'} onClick={() => setStep(step + 1)}>
                     Next
                     <Image
                       src="/arrow_right.svg"
@@ -133,7 +133,7 @@ export default function Mint() {
                   </button>
                 )}
                 {step === 3 && (
-                  <button className={styles.button_next} onClick={() => { setIsModalOpen(true); }}>
+                  <button className={'button_next'} onClick={() => { setIsModalOpen(true); }}>
                     Mint & Deploy
                     <Image
                       src="/arrow_right.svg"
@@ -149,12 +149,12 @@ export default function Mint() {
           }
         </div>
 
-        <div className={styles.layer1_div}>
-          <div className={styles.div_left}>
+        <div className={'layer1_div'}>
+          <div className={'div_left'}>
             {stepArray.map(item => <StepCard key={item.index} {...item} step={step} />)}
           </div>
 
-          <div className={styles.div_right}>
+          <div className={'div_right'}>
             <FileUploader
               handleChange={handleChange}
               name="file"
@@ -466,8 +466,8 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={styles.cancel_next_div + ' ' + styles.flex_ac_gap}>
-          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+        <div className={'div_button_wrapper'+ ' ' + styles.flex_ac_gap}>
+          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Back
             <Image
               src="/back_arrow.svg"
@@ -477,7 +477,7 @@ export default function Mint() {
               priority
             />
           </button>
-          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Review
             <Image
               src="/arrow_right.svg"
@@ -500,8 +500,8 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={styles.cancel_next_div + ' ' + styles.flex_ac_gap}>
-          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+        <div className={'div_button_wrapper' + ' ' + styles.flex_ac_gap}>
+          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Confirm
             <Image
               src="/back_arrow.svg"
