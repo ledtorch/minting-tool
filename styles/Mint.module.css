@@ -336,3 +336,10 @@
   color: #C2C2C6;
   margin-top: 11px;
 }
+
+.flex_ac_gap {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  margin-top: 24px;
+}

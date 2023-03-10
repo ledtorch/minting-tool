@@ -150,3 +150,28 @@ input[type="text"] {
   background-color: #D49C50;
   border-color: transparent;
 }
+.ant-radio-wrapper:hover .ant-radio-inner {
+  border-color: #D49C50;
+}
+
+
+
+
+.popup_modal .ant-modal-content {
+  background-color: #07080A;
+  border: 1px solid #F4C270
+}
+
+.popup_modal_success .ant-modal-content {
+  background-color: #07080A;
+  border: 1px solid #24AD6E;
+  width: 360px;
+}
+
+.popup_modal .ant-modal-header {
+  background-color: transparent;
+}
+.popup_modal .ant-modal-title {
+  font-size: 24px;
+  color: #F2F2F5;
+}

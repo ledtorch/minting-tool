@@ -10,6 +10,8 @@ import { Switch, Checkbox, Radio } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { RadioChangeEvent } from 'antd';
 
+import { Button, Modal } from 'antd';
+
 const fileTypes = ["JPG", "PNG", "SVG", "GIF"];
 
 const stepArray = [
@@ -52,6 +54,7 @@ export default function Mint() {
   const [redemptionLimit, setRedemptionLimit] = useState<string>("1");
   const [loyalty, setLoyalty] = useState<string>("1");
   const [attribute, setAttribute] = useState<IAttributeData[]>([{ trait: '', value: '' }]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleChange = (filePass: File) => {
     if (!file) {
@@ -92,50 +95,56 @@ export default function Mint() {
             Minting NFT
           </div>
           {
-            file && (<div className={styles.cancel_next_div}>
-              {step === 1 && (<button className={styles.button_cancel} onClick={handleClickCancelFile}>
-                <Image
-                  src="/cancel_upload_button.svg"
-                  alt="cancel_upload_button"
-                  width={24}
-                  height={24}
-                  priority
-                />
-                Cancel this File
-              </button>)}
-              {step > 1 && (
-                <button className={styles.button_next} onClick={() => setStep(step - 1)}>
-                  Back
+            file && (
+              <div className={styles.cancel_next_div}>
+                {step === 1 && (<button className={styles.button_cancel} onClick={handleClickCancelFile}>
                   <Image
-                    src="/back_arrow.svg"
-                    alt="back_arrow"
+                    src="/cancel_upload_button.svg"
+                    alt="cancel_upload_button"
                     width={24}
                     height={24}
                     priority
                   />
-                </button>
-              )}
-              {step < 3 && (<button className={styles.button_next} onClick={() => setStep(step + 1)}>
-                Next
-                <Image
-                  src="/arrow_right.svg"
-                  alt="arrow_right"
-                  width={24}
-                  height={24}
-                  priority
-                />
-              </button>)}
-              {step === 3 && (<button className={styles.button_next} onClick={() => {console.log('click Mint & Deploy')}}>
-                Mint & Deploy
-                <Image
-                  src="/arrow_right.svg"
-                  alt="arrow_right"
-                  width={24}
-                  height={24}
-                  priority
-                />
-              </button>)}
-            </div>)
+                  Cancel this File
+                </button>)}
+                {step > 1 && (
+                  <button className={styles.button_next} onClick={() => setStep(step - 1)}>
+                    Back
+                    <Image
+                      src="/back_arrow.svg"
+                      alt="back_arrow"
+                      width={24}
+                      height={24}
+                      priority
+                    />
+                  </button>
+                )}
+                {step < 3 && (
+                  <button className={styles.button_next} onClick={() => setStep(step + 1)}>
+                    Next
+                    <Image
+                      src="/arrow_right.svg"
+                      alt="arrow_right"
+                      width={24}
+                      height={24}
+                      priority
+                    />
+                  </button>
+                )}
+                {step === 3 && (
+                  <button className={styles.button_next} onClick={() => { setIsModalOpen(true); }}>
+                    Mint & Deploy
+                    <Image
+                      src="/arrow_right.svg"
+                      alt="arrow_right"
+                      width={24}
+                      height={24}
+                      priority
+                    />
+                  </button>
+                )}
+              </div>
+            )
           }
         </div>
 
@@ -421,6 +430,88 @@ export default function Mint() {
           </div>
         </div>
       </div>
+
+      <Modal
+        title="Please Connect"
+        footer={null}
+        centered
+        maskClosable={false}
+        className={'popup_modal'}
+        open={false}
+        onOk={() => { setIsModalOpen(false); }}
+        onCancel={() => { setIsModalOpen(false); }}
+      >
+        <p>To continue, please connect your wallet.</p>
+        <p style={{ marginTop: '20px', color: '#D49C50' }}>
+          <Image
+            src="/connect_icon.svg"
+            alt="connect_icon"
+            width={12}
+            height={12}
+            priority
+            style={{ marginRight: '6px' }}
+          />
+          Connect Wallet
+        </p>
+      </Modal>
+
+      <Modal
+        title="Review the Transaction on Your Wallet"
+        footer={null}
+        centered
+        maskClosable={false}
+        className={'popup_modal'}
+        open={false}
+        onOk={() => { setIsModalOpen(false); }}
+        onCancel={() => { setIsModalOpen(false); }}
+      >
+        <div className={styles.cancel_next_div + ' ' + styles.flex_ac_gap}>
+          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+            Back
+            <Image
+              src="/back_arrow.svg"
+              alt="back_arrow"
+              width={24}
+              height={24}
+              priority
+            />
+          </button>
+          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+            Review
+            <Image
+              src="/arrow_right.svg"
+              alt="arrow_right"
+              width={24}
+              height={24}
+              priority
+            />
+          </button>
+        </div>
+      </Modal>
+
+      <Modal
+        title="Successfully Minted"
+        footer={null}
+        centered
+        maskClosable={false}
+        className={'popup_modal popup_modal_success'}
+        open={isModalOpen}
+        onOk={() => { setIsModalOpen(false); }}
+        onCancel={() => { setIsModalOpen(false); }}
+      >
+        <div className={styles.cancel_next_div + ' ' + styles.flex_ac_gap}>
+          <button className={styles.button_next} onClick={() => setIsModalOpen(false)}>
+            Confirm
+            <Image
+              src="/back_arrow.svg"
+              alt="back_arrow"
+              width={24}
+              height={24}
+              priority
+            />
+          </button>
+        </div>
+      </Modal>
     </Layout>
   )
 }

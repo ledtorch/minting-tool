@@ -10,10 +10,10 @@ interface IPlusMinusInputParam {
   disabled: boolean
 }
 
-export const PlusMinusInput = (data: IPlusMinusInputParam) => {
+export const PlusMinusInput = (props: IPlusMinusInputParam) => {
   const {
     unitNum, value, setValue, maxValue, minValue, disabled
-  } = data;
+  } = props;
   return (
     <div className={styles.div_plus_minus}>
       {!disabled && (
