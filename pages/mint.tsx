@@ -466,7 +466,7 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper'+ ' ' + styles.flex_ac_gap}>
+        <div className={'div_button_wrapper'+ ' ' + 'flex_ac_gap'}>
           <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Back
             <Image
@@ -500,7 +500,7 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper' + ' ' + styles.flex_ac_gap}>
+        <div className={'div_button_wrapper' + ' ' + 'flex_ac_gap'}>
           <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Confirm
             <Image
@@ -563,7 +563,7 @@ function DropFileChildren(
             className={styles.preview_file}
           />
         </div>
-        <div className={styles.div_info}>
+        <div className={'div_info'}>
           <div>
             NFT Name
             <Image
@@ -578,7 +578,7 @@ function DropFileChildren(
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} disabled={step === 3} />
           </div>
         </div>
-        <div className={styles.div_info}>
+        <div className={'div_info'}>
           <div>
             NFT Description
             <Image

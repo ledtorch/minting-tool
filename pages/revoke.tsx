@@ -94,7 +94,7 @@ export default function Revoke() {
             <div className={styles.div_step1}>
               {
                 step === 1 && (
-                  <div className={styles.div_search}>
+                  <div className={'div_search'}>
                     <Image
                       src="/search_icon.svg"
                       alt="search_icon"
@@ -112,9 +112,9 @@ export default function Revoke() {
                 )
               }
 
-              <div className={styles.div_result}>
+              <div className={'div_result'}>
                 <div
-                  className={styles.div_item + ' ' + (check ? styles.checked : '')}
+                  className={'div_item' + ' ' + (check ? 'checked' : '')}
                   onClick={() => { step === 1 && setCheck(!check) }}
                 >
                   <Image
@@ -122,10 +122,10 @@ export default function Revoke() {
                     alt="result_item"
                     fill
                     priority
-                    className={styles.img_item}
+                    className={'img_item'}
                   />
-                  <div className={styles.div_footer}>
-                    <div className={styles.div_title}>Title.jpg</div>
+                  <div className={'div_footer'}>
+                    <div className={'div_title'}>Title.jpg</div>
                     <Checkbox
                       checked={check}
                       onChange={(e: CheckboxChangeEvent) => {
@@ -153,7 +153,7 @@ export default function Revoke() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper' + ' ' + styles.flex_ac_gap}>
+        <div className={'div_button_wrapper' + ' ' + 'flex_ac_gap'}>
           <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
             Confirm
             <Image

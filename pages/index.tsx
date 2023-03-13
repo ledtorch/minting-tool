@@ -26,7 +26,7 @@ const funcArray = [
     title: 'Upgrade',
     iconPath: "/icon_upgrade.svg",
     imagePath: "/image_upgrade.svg",
-    linkPath: "/mint",
+    linkPath: "/upgrade",
     description: "Upgrade NFT"
   }
 ]

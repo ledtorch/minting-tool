@@ -38,27 +38,6 @@
   border-radius: 16px;
 }
 
-.div_info {
-  display: flex;
-  flex-direction: column;
-  row-gap: 7px;
-  background-color: rgba(255, 255, 255, 0.07);
-  padding: 15px 12px;
-  font-size: 14px;
-  border-radius: 6px;
-  margin-top: 24px;
-}
-
-.div_info>div:nth-child(1) {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  color: #C2C2C6;
-}
-
-.div_info input {
-  width: 75%;
-}
 
 
 
@@ -202,11 +181,4 @@
   font-size: 12px;
   color: #C2C2C6;
   margin-top: 11px;
-}
-
-.flex_ac_gap {
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
-  margin-top: 24px;
 }
