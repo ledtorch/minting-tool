@@ -1,0 +1,11 @@
+.button_type {
+  display: flex;
+}
+.button_type.white {
+  border: 1px solid #FFF;
+  color: #878280;
+}
+.button_type.red {
+  border: 1px solid #F46060;
+  color: #F46060;
+}

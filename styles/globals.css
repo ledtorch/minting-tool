@@ -201,6 +201,10 @@ input[type="text"] {
   column-gap: 1rem;
 }
 
+.div_button_wrapper.mt-24 {
+  margin-top: 24px;
+}
+
 .div_button_wrapper>button {
   display: flex;
   align-items: center;
@@ -212,22 +216,6 @@ input[type="text"] {
   font-size: 18px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-.div_button_wrapper>.button_cancel {
-  display: flex;
-  border: 1px solid #F46060;
-  color: #F46060;
-}
-
-.div_button_wrapper>.button_next {
-  border: 1px solid #FFF;
-  color: #878280;
-}
-
-.div_button_wrapper>.button_revoke_nft {
-  border: 1px solid #F46060;
-  color: #F46060;
 }
 
 
@@ -429,9 +417,3 @@ input[type="text"] {
 
 
 
-.flex_ac_gap {
-  display: flex;
-  align-items: center;
-  column-gap: 1rem;
-  margin-top: 24px;
-}

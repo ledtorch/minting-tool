@@ -7,11 +7,12 @@ import { PlusMinusInput } from '@/components/PlusMinusInput/PlusMinusInput'
 import { StepCard } from '@/components/StepCard/StepCard'
 
 import { FileUploader } from "react-drag-drop-files";
-import { Switch, Checkbox, Radio } from 'antd';
+import { Switch, Checkbox, Radio, Modal } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 import type { RadioChangeEvent } from 'antd';
 
-import { Button, Modal } from 'antd';
+
+import Button from "@/components/Button/Button";
 
 const fileTypes = ["JPG", "PNG", "SVG", "GIF"];
 
@@ -98,52 +99,10 @@ export default function Mint() {
           {
             file && (
               <div className={'div_button_wrapper'}>
-                {step === 1 && (<button className={'button_cancel'} onClick={handleClickCancelFile}>
-                  <Image
-                    src="/cancel_upload_button.svg"
-                    alt="cancel_upload_button"
-                    width={24}
-                    height={24}
-                    priority
-                  />
-                  Cancel this File
-                </button>)}
-                {step > 1 && (
-                  <button className={'button_next'} onClick={() => setStep(step - 1)}>
-                    Back
-                    <Image
-                      src="/back_arrow.svg"
-                      alt="back_arrow"
-                      width={24}
-                      height={24}
-                      priority
-                    />
-                  </button>
-                )}
-                {step < 3 && (
-                  <button className={'button_next'} onClick={() => setStep(step + 1)}>
-                    Next
-                    <Image
-                      src="/arrow_right.svg"
-                      alt="arrow_right"
-                      width={24}
-                      height={24}
-                      priority
-                    />
-                  </button>
-                )}
-                {step === 3 && (
-                  <button className={'button_next'} onClick={() => { setIsModalOpen(true); }}>
-                    Mint & Deploy
-                    <Image
-                      src="/arrow_right.svg"
-                      alt="arrow_right"
-                      width={24}
-                      height={24}
-                      priority
-                    />
-                  </button>
-                )}
+                {step === 1 && <Button title="Cancel this File" clickFunc={handleClickCancelFile} />}
+                {step > 1 && <Button title="Back" clickFunc={() => setStep(step - 1)} />}
+                {step < 3 && <Button title="Next" clickFunc={() => setStep(step + 1)} />}
+                {step === 3 && <Button title="Mint & Deploy" clickFunc={() => setIsModalOpen(true)} />}
               </div>
             )
           }
@@ -466,27 +425,9 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper'+ ' ' + 'flex_ac_gap'}>
-          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
-            Back
-            <Image
-              src="/back_arrow.svg"
-              alt="back_arrow"
-              width={24}
-              height={24}
-              priority
-            />
-          </button>
-          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
-            Review
-            <Image
-              src="/arrow_right.svg"
-              alt="arrow_right"
-              width={24}
-              height={24}
-              priority
-            />
-          </button>
+        <div className={'div_button_wrapper mt-24'}>
+          <Button title="Back" clickFunc={() => setIsModalOpen(false)} />
+          <Button title="Review" clickFunc={() => setIsModalOpen(false)} />
         </div>
       </Modal>
 
@@ -500,17 +441,8 @@ export default function Mint() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper' + ' ' + 'flex_ac_gap'}>
-          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
-            Confirm
-            <Image
-              src="/back_arrow.svg"
-              alt="back_arrow"
-              width={24}
-              height={24}
-              priority
-            />
-          </button>
+        <div className={'div_button_wrapper mt-24'}>
+          <Button title="Confirm" clickFunc={() => setIsModalOpen(false)} />
         </div>
       </Modal>
     </Layout>

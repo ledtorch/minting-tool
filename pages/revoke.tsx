@@ -8,6 +8,8 @@ import { StepCard } from '@/components/StepCard/StepCard'
 import { Switch, Checkbox, Modal } from 'antd';
 import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
+import Button from "@/components/Button/Button";
+
 const stepArray = [
   {
     index: 1,
@@ -44,44 +46,9 @@ export default function Revoke() {
             Revoke NFT
           </div>
           <div className={'div_button_wrapper'}>
-            {step > 1 && (
-              <button className={'button_next'} onClick={() => setStep(step - 1)}>
-                Back
-                <Image
-                  src="/back_arrow.svg"
-                  alt="back_arrow"
-                  width={24}
-                  height={24}
-                  priority
-                />
-              </button>
-            )}
-            {
-              (step === 1 && check) && (
-                <button className={'button_next'} onClick={() => setStep(step + 1)}>
-                  Next
-                  <Image
-                    src="/arrow_right.svg"
-                    alt="arrow_right"
-                    width={24}
-                    height={24}
-                    priority
-                  />
-                </button>
-              )
-            }
-            {step === 2 && (
-              <button className={'button_revoke_nft'} onClick={() => { setIsModalOpen(true); }}>
-                <Image
-                  src="/button_revoke_nft.svg"
-                  alt="button_revoke_nft"
-                  width={24}
-                  height={24}
-                  priority
-                />
-                Revoke Selected NFT
-              </button>
-            )}
+            {step > 1 && <Button title="Back" clickFunc={() => setStep(step - 1)} />}
+            {(step === 1 && check) && <Button title="Next" clickFunc={() => setStep(step + 1)} />}
+            {step === 2 && <Button title="Revoke Selected NFT" clickFunc={() => { setIsModalOpen(true); }} />}
           </div>
         </div>
 
@@ -153,17 +120,8 @@ export default function Revoke() {
         onOk={() => { setIsModalOpen(false); }}
         onCancel={() => { setIsModalOpen(false); }}
       >
-        <div className={'div_button_wrapper' + ' ' + 'flex_ac_gap'}>
-          <button className={'button_next'} onClick={() => setIsModalOpen(false)}>
-            Confirm
-            <Image
-              src="/back_arrow.svg"
-              alt="back_arrow"
-              width={24}
-              height={24}
-              priority
-            />
-          </button>
+        <div className={'div_button_wrapper mt-24'}>
+          <Button title="Confirm" clickFunc={() => { setIsModalOpen(false); }} />
         </div>
       </Modal>
     </Layout>
