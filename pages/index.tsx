@@ -16,11 +16,11 @@ const funcArray = [
     description: "Mint NFT"
   },
   {
-    title: 'Revoke',
+    title: 'Reclaim',
     iconPath: "/icon_revoke.svg",
     imagePath: "/image_revoke.svg",
     linkPath: "/revoke",
-    description: "Revoke NFT"
+    description: "Reclaim NFT"
   },
   {
     title: 'Upgrade',

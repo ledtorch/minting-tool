@@ -1,0 +1,26 @@
+.div_setting_card {
+  background-color: rgba(255, 255, 255, 0.07);
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.div_setting_card > .div_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.div_setting_card > .div_header > .div_title {
+  display: flex;
+  align-items: center;
+  column-gap: 7px;
+  color: #C2C2C6;
+}
+.div_setting_card > .div_description {
+  color: #C2C2C6;
+  font-size: 9px;
+  margin-top: 7px;
+}
+.div_setting_card > .div_description > span {
+  color: #F4C270;
+}
+

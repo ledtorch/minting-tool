@@ -13,6 +13,8 @@ import type { RadioChangeEvent } from 'antd';
 
 
 import Button from "@/components/Button/Button";
+import FeatureCard from "@/components/FeatureCard/FeatureCard";
+import SettingCard from "@/components/SettingCard/SettingCard";
 
 const fileTypes = ["JPG", "PNG", "SVG", "GIF"];
 
@@ -133,26 +135,19 @@ export default function Mint() {
             </FileUploader>
             {step >= 2 && (
               <div className={styles.div_step2}>
-                <div className={styles.div_setting_card}>
-                  <div className={styles.div_header}>
-                    <div className={styles.div_title}>
-                      <Image
-                        src="/Soulbound.svg"
-                        alt="Soulbound"
-                        width={20}
-                        height={20}
-                        priority
-                      />
-                      Soulbound
 
-                    </div>
-                    <Switch size="small" defaultChecked={soulBound} onChange={(check) => { setSoulBound(check) }} disabled={step === 3} />
-                  </div>
-                  <div className={styles.div_description}>
+                <SettingCard
+                  title="Soulbound"
+                  checkValue={soulBound}
+                  setCheck={setSoulBound}
+                  checkDisabled={step === 3}
+                  icon={"/Soulbound.svg"}
+                >
+                  <div className={styles.setting_card_description}>
                     In TOP, the soulbound token can only be revoked by its original owner. For more information, please refer to the section on <span>SBT in TOP</span>.
                   </div>
                   {soulBound && (
-                    <div className={styles.div_receiver}>
+                    <div className={styles.soulbound_receiver}>
                       Receiver
                       <input
                         type="text"
@@ -164,24 +159,18 @@ export default function Mint() {
                       <p>*The receiver will be granted to the wallet you used for minting.</p>
                     </div>
                   )}
-                </div>
+                </SettingCard>
+
 
                 {!soulBound && (
-                  <div className={styles.div_setting_card}>
-                    <div className={styles.div_header}>
-                      <div className={styles.div_title}>
-                        <Image
-                          src="/batch_mint.svg"
-                          alt="batch_mint"
-                          width={20}
-                          height={20}
-                          priority
-                        />
-                        Batch Mint
-                      </div>
-                      <Switch size="small" defaultChecked={batchMint} onChange={(check) => setBatchMint(check)} disabled={step === 3} />
-                    </div>
-                    {batchMint && (<div className={styles.div_content} style={{ marginTop: '15px' }}>
+                  <SettingCard
+                    title="Batch Mint"
+                    checkValue={batchMint}
+                    setCheck={setBatchMint}
+                    checkDisabled={step === 3}
+                    icon={"/batch_mint.svg"}
+                  >
+                    {batchMint && (<div className={styles.div_batch_mint} style={{ marginTop: '15px' }}>
                       <PlusMinusInput
                         unitNum={50}
                         value={batchMintValue}
@@ -195,22 +184,16 @@ export default function Mint() {
                       </p>
                       <p>*If you need to mint more than 10,000 NFTs, please contact our customer service.</p>
                     </div>)}
-                  </div>
+                  </SettingCard>
                 )}
 
-                <div className={styles.div_setting_card}>
-                  <div className={styles.div_header}>
-                    <div className={styles.div_title}>
-                      <Image
-                        src="/batch_mint.svg"
-                        alt="batch_mint"
-                        width={20}
-                        height={20}
-                        priority
-                      />
-                      NFT Contract Features
-                    </div>
-                  </div>
+                <SettingCard
+                  title="NFT Contract Features"
+                  checkValue={false}
+                  setCheck={null}
+                  checkDisabled={false}
+                  icon={"/NftContractFeatures.svg"}
+                >
                   <FeatureCard title="Voucher" step={step}>
                     <div className={styles.div_voucher}>
                       <div>
@@ -365,6 +348,7 @@ export default function Mint() {
                           return;
                         }
                         let data = [...attribute];
+                        if (data.length === 10) return;
                         data.push({ trait: '', value: '' })
                         setAttribute(data);
                       }}>
@@ -384,7 +368,7 @@ export default function Mint() {
                       </div>
                     </div>
                   </FeatureCard>
-                </div>
+                </SettingCard>
               </div>
             )}
           </div>
@@ -446,35 +430,6 @@ export default function Mint() {
         </div>
       </Modal>
     </Layout>
-  )
-}
-
-
-
-function FeatureCard({ title, children, step }: { title: string, children: React.ReactNode, step: number }) {
-  const [show, setShow] = useState<boolean>(false);
-  return (
-    <div className={styles.div_feature_card}>
-      <div className={styles.div_header}>
-        <div className={styles.div_title}>
-          <Checkbox onChange={(e: CheckboxChangeEvent) => {
-            console.log(`checked = ${e.target.checked}`);
-          }} disabled={step === 3}>{title}</Checkbox>
-        </div>
-        <Image
-          src={show ? "/header_dash_icon.svg" : "/header_arrow_down_icon.svg"}
-          alt="control_icon"
-          width={24}
-          height={24}
-          priority
-          className={styles.control_icon}
-          onClick={() => { setShow(!show) }}
-        />
-      </div>
-      {
-        show && children
-      }
-    </div>
   )
 }
 

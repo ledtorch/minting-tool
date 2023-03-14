@@ -48,7 +48,7 @@ export default function Revoke() {
           <div className={'div_button_wrapper'}>
             {step > 1 && <Button title="Back" clickFunc={() => setStep(step - 1)} />}
             {(step === 1 && check) && <Button title="Next" clickFunc={() => setStep(step + 1)} />}
-            {step === 2 && <Button title="Revoke Selected NFT" clickFunc={() => { setIsModalOpen(true); }} />}
+            {step === 2 && <Button title="Reclaim Selected NFT" clickFunc={() => { setIsModalOpen(true); }} />}
           </div>
         </div>
 

@@ -361,6 +361,9 @@ input[type="text"] {
   border-radius: 16px;
 }
 
+.div_result>.div_edit_left>.div_wrapper_1>.div_info {
+  background-color: transparent;
+}
 .div_result>.div_edit_left>.div_wrapper_1>.div_info>.div_title {
   font-size: 10px;
   color: #C2C2C6;
@@ -401,11 +404,6 @@ input[type="text"] {
 .div_info_wrapper > .div_info {
   flex: 1;
 }
-
-
-
-
-
 
 
 

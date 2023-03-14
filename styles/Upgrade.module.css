@@ -40,3 +40,115 @@
   display: flex;
   column-gap: 12px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.div_step3 {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  width: 360px;
+}
+.div_image_wrapper {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+
+.div_image_wrapper > .preview_file {
+  border-radius: 16px;
+}
+
+
+.setting_card_description {
+  color: #C2C2C6;
+  font-size: 9px;
+  margin-top: 7px;
+}
+.setting_card_description > span {
+  color: #F4C270;
+}
+
+.div_batch_mint > p {
+  font-size: 12px;
+  color: #C2C2C6;
+}
+
+.soulbound_receiver {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.soulbound_receiver > p {
+  font-size: 12px;
+  color: #F46060;
+}
+
+
+.div_voucher, .div_attribute {
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.div_voucher > div > .div_title, .div_attribute > div > .div_title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.div_attribute > div > .div_input {
+  display: flex;
+  column-gap: 8px;
+}
+
+.red_hint {
+  font-size: 10px;
+  color: #F46060;
+  margin-top: 4px;
+}
+
+.white_hint {
+  font-size: 10px;
+  color: #C2C2C6;
+  margin-top: 4px;
+}
+
+.button_add_attribute {
+  color: #878280;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+
+.div_upgradable {
+  margin-top: 12px;
+}
+.div_upgradable > .div_nav {
+  font-size: 12px;
+  color: #FFF;
+  text-decoration: underline;
+}
+.div_upgradable > .div_content {
+  font-size: 12px;
+  color: #C2C2C6;
+  margin-top: 11px;
+}
