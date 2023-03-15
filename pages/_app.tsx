@@ -4,7 +4,7 @@ import { TonConnectUIProvider } from '@tonconnect/ui-react';
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <TonConnectUIProvider manifestUrl="http://localhost:3000/tonconnect-manifest.json">
+    <TonConnectUIProvider manifestUrl="https://viutila.github.io/tonconnect-manifest.json">
       <Component {...pageProps} />
     </TonConnectUIProvider>
   )

@@ -1,7 +1,7 @@
 {
-  "url": "http://localhost:3000/",
-  "name": "minting toll",
-  "iconUrl": "http://localhost:3000/v3.svg",
+  "url": "https://viutila.github.io/tonconnect-manifest.json",
+  "name": "Minting Tool",
+  "iconUrl": "https://viutila.github.io/v3.svg",
   "termsOfUseUrl": "<terms-of-use-url>",
   "privacyPolicyUrl": "<privacy-policy-url>"
 }
