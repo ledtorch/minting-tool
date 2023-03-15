@@ -2,7 +2,12 @@ import styles from './header.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 
+//import TonConnect from '@tonconnect/sdk';
+import { TonConnectButton } from '@tonconnect/ui-react';
+
 export default function Header() {
+  //const connector = new TonConnect({ manifestUrl: 'http://localhost:3000/tonconnect-manifest.json' });
+
   return (
     <div className={styles.header}>
       <Link href="/">
@@ -28,6 +33,7 @@ export default function Header() {
         />
         <span className={styles.connect_wallet}>Connect Wallet</span>
       </div>
+      <TonConnectButton />
     </div>
   );
 }
