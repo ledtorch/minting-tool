@@ -1,8 +1,10 @@
 import styles from './header.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+import { AuthButton } from '@/components/AuthButton/AuthButton';
 
 //import TonConnect from '@tonconnect/sdk';
+//import { TonConnectUIProvider } from '@tonconnect/ui-react';
 import { TonConnectButton } from '@tonconnect/ui-react';
 //import uploadMetadata from '@/util/uploadToIPFS';
 
@@ -38,7 +40,7 @@ export default function Header() {
           Minting Tool
         </div>
       </Link>
-      {/* <div className={styles.button_connect_wallet}>
+      <div className={styles.button_connect_wallet}>
         <Image
           src="/connect_icon.svg"
           alt="connect_icon"
@@ -47,8 +49,7 @@ export default function Header() {
           priority
         />
         <span className={styles.connect_wallet}>Connect Wallet</span>
-      </div> */}
-      <button onClick={handleClick}>test</button>
+      </div>
       <TonConnectButton />
     </div>
   );
