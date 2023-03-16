@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from 'next/image'
 import styles from '@/styles/Revoke.module.css'
-import Layout from '../components/layout'
 
 import { StepCard } from '@/components/StepCard/StepCard'
 
@@ -32,7 +31,7 @@ export default function Revoke() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Layout>
+    <>
       <div>
         <div className={"page_title_div"}>
           <div>
@@ -124,6 +123,6 @@ export default function Revoke() {
           <Button title="Confirm" clickFunc={() => { setIsModalOpen(false); }} />
         </div>
       </Modal>
-    </Layout>
+    </>
   )
 }

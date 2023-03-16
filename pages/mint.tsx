@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Image from 'next/image'
 
-import Layout from '../components/layout'
+
 import styles from '@/styles/Mint.module.css'
 import { PlusMinusInput } from '@/components/PlusMinusInput/PlusMinusInput'
 import { StepCard } from '@/components/StepCard/StepCard'
@@ -85,7 +85,7 @@ export default function Mint() {
   }
 
   return (
-    <Layout>
+    <>
       <div>
         <div className={"page_title_div"}>
           <div>
@@ -429,7 +429,7 @@ export default function Mint() {
           <Button title="Confirm" clickFunc={() => setIsModalOpen(false)} />
         </div>
       </Modal>
-    </Layout>
+    </>
   )
 }
 

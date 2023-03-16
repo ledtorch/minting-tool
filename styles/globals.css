@@ -415,3 +415,25 @@ input[type="text"] {
 
 
 
+.connect_button_class {
+  color: #D49C50;
+}
+
+.connect_button_class .go604993317, .connect_button_class .go2539413107 {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-radius: 4px;
+}
+
+.connect_button_class .go2539413107 > svg {
+  display: none;
+}
+
+.connect_button_class .go2331688864, .connect_button_class .go800548454 {
+  color: #D49C50;
+  font-size: 16px;
+}
+
+.go800548454::before {
+  content: url(/connect_icon.svg);
+  margin-right: 10px;
+}

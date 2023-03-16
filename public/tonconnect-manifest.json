@@ -1,7 +1,7 @@
 {
-  "url": "https://lccbig.hpc.tw/tonconnect-manifest.json",
+  "url": "https://viutila.github.io/tonconnect-manifest.json",
   "name": "Minting Tool",
-  "iconUrl": "https://lccbig.hpc.tw/v3.svg",
+  "iconUrl": "https://viutila.github.io/v3.svg",
   "termsOfUseUrl": "<terms-of-use-url>",
   "privacyPolicyUrl": "<privacy-policy-url>"
 }

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Image from 'next/image'
 import styles from '@/styles/Upgrade.module.css'
-import Layout from '../components/layout'
 
 import { StepCard } from '@/components/StepCard/StepCard'
 
@@ -74,7 +73,7 @@ const Upgrade = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div>
         <div className={"page_title_div"}>
           <div>
@@ -569,7 +568,7 @@ const Upgrade = () => {
           <Button title="Confirm" clickFunc={() => setIsModalOpen(false)} />
         </div>
       </Modal>
-    </Layout>
+    </>
   )
 }
 
